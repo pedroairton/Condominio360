@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Condomínio 360</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>CONDOMÍNIO <span class="n-titulo">360</span></h1>
+    <!-- formulário de envio mensagem -->
+    <form style="display: none">
+      <span class="titulo-form">Envie sua mensagem!</span>
+      <input type="text" placeholder="Nome" class="input-field" />
+      <input type="text" placeholder="Apartamento" />
+      <textarea
+        class="materialize-textarea"
+        rows="10"
+        cols="30"
+        placeholder="Mensagem"
+      ></textarea>
+      <select>
+        <option value="" disabled selected>
+          Escolha para quem enviar sua mensagem
+        </option>
+        <option value="1">Síndico</option>
+        <option value="2">Portaria</option>
+        <option value="3">Outro Apartamento</option>
+      </select>
+      <input
+        type="text"
+        name=""
+        id="aptenvio"
+        placeholder="Apartamento para enviar mensagem"
+      />
+      <button class="btn-envio" onclick="envioEmail()">Enviar Mensagem</button>
+      <span class="resultado"></span>
+    </form>
+    <div class="tabela">
+      <table id="apartamentos-table">
+        <thead>
+          <tr>
+            <th>Nome do Responsável</th>
+            <th>E-mail</th>
+            <th>Apartamento</th>
+            <th>Bloco</th>
+            <th>Residente</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Os dados serão inseridos aqui -->
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script type="module" src="./script.js"></script>
+
+  <script>
+    // axios
+
+    async function envioEmail() {
+      event.preventDefault();
+
+      resultado = document.querySelector(".resultado");
+      resultado.innerText = "Aguarde...";
+
+      try {
+        // site para testar requisições
+        const response = await axios.post(
+          "https://jsonplaceholder.typicode.com/todos/"
+        );
+
+        // console.log(response.data);
+        setTimeout(() => {
+          resultado.innerText = "Enviado com Sucesso!";
+        }, 1500);
+      } catch (error) {
+        console.log(error);
+        resultado.innerText = "Ocorreu um erro ao Enviar.";
+      }
+    }
+  </script>
+
+  <script>
+    const select = document.querySelector("select");
+    const aptEnvio = document.querySelector("#aptenvio");
+    select.addEventListener("change", () => {
+      if (select.value === "3") {
+        aptEnvio.style.display = "block";
+      } else {
+        aptEnvio.style.display = "none";
+      }
+    });
+  </script>
+</html>

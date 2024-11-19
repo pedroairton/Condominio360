@@ -1,0 +1,89 @@
+:root{
+    --azul: #2A2D70;
+    --hoverazul: #22245A
+}
+body{
+    background-color: var(--azul);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+h1{
+    color: white;
+    font-weight: 500;   	
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.5);
+}
+span.n-titulo{
+    color: gold;
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.titulo-form{
+    color: #808080;
+    font-size: 1.25rem;
+    /* font-weight: 500; */
+    align-self: flex-start;
+}
+form, .tabela{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 450px;
+}
+.tabela{
+    width: 600px;
+}
+.tabela tr:nth-child(even){
+    background-color: #f0f0f0;
+}
+input[type=text], textarea{
+    width: 100%;
+}
+input[type=text]:focus, textarea:focus{
+    border-bottom: solid 1px var(--azul) !important;
+    box-shadow: 0 1px 0 0 var(--azul) !important;
+}
+input[type=text]::placeholder, textarea::placeholder{
+    color: #808080 !important;
+}
+textarea{
+    height: 150px !important;
+}
+select{
+    display: block !important;
+    color: #808080 !important;
+    border: none !important;
+    border-bottom: solid 1px #808080 !important;
+    /* border-radius: 8px !important; */
+}
+select option{
+    color: #808080 !important;
+}
+.btn-envio{
+    background-color: var(--azul) !important;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-weight: 500;
+    height: 40px;
+    width: 150px;
+    margin-top: 2rem;
+    transition: .3s;
+    cursor: pointer;
+}
+.btn-envio:hover{
+    background-color: var(--hoverazul)
+}
+#aptenvio{
+    display: none;
+}
+.resultado{
+    color: #808080;
+}
